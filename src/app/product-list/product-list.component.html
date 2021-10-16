@@ -10,13 +10,29 @@
   <!-- <p *ngIf="product.name">
     name: {{ product.name }}
   </p> -->
-  <!-- *ngIf naudojamas sukrti elementui, tik jei egzistuoja product.description -->
-  <p *ngIf="product.description">
+  <!-- *ngIf naudojamas sukurti <p> elementui, tik jei egzistuoja 'product.description', viduje galima rasyti js syntakse kaip pavyzdyje jei kondicija atitinka bus atvaizduojama. Su else nurodome ng-template id -->
+  <div *ngIf="product.photo">
+    <img src="{{ product.photo }}" />
+  </div>
+  <p *ngIf="product.description.length > 10; else noDescription">
     Description: {{ product.description }}
   </p>
-  <button (click)="share()">
-    Share
-  </button>
+  <p>
+    <ng-template #noDescription> No description </ng-template>
+  </p>
+
+  <div class="margin">
+    <button (click)="shareFacebook()">
+      <i class="material-icons text-white">share</i>
+      Facebook
+    </button>
+  </div>
+  <div class="margin">
+    <button class="twitter-share-button" (click)="shareTwitter()">
+      <i class="material-icons text-white">share</i>
+      Twitter
+    </button>
+  </div>
   <!-- <p *ngIf="product.price">
     price: {{ product.price }}
   </p>  -->
